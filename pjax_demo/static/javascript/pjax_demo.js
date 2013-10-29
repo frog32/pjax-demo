@@ -43,7 +43,7 @@ AppRouter = Backbone.Router.extend({
 			var path = data.location;
 			// check wether its a relative redirect
 			if(path.indexOf('/') !== 0) path = window.location.pathname + path;
-			App.navigate(path, {trigger: true, replace: false});
+			App.navigate(path, {trigger: true, replace: true});
 			return true;
 		}
 		return false;
@@ -53,6 +53,7 @@ AppRouter = Backbone.Router.extend({
 		e.preventDefault();
 		var url = $form.attr('action');
 		if(url.indexOf('#') === 0) url = '.'; // IE10 fix
+        App.navigate(url, {trigger: false});
 		$.ajax({
 			url: url,
 			type: $form.attr('method'),
